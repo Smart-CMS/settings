@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     function setting(string|array $key = '*', mixed $default = null): mixed
     {
         if (is_array($key)) {

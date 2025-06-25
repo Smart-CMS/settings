@@ -26,6 +26,7 @@ class Settings
         Setting::all()->each(function ($setting) use (&$settings) {
             data_set($settings, $setting->key, $setting->value);
         });
+
         return $settings;
     }
 

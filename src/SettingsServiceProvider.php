@@ -2,9 +2,9 @@
 
 namespace SmartCms\Settings;
 
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class SettingsServiceProvider extends PackageServiceProvider
 {
@@ -19,7 +19,7 @@ class SettingsServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->askToRunMigrations();
 
-                $composerFile = file_get_contents(__DIR__ . '/../composer.json');
+                $composerFile = file_get_contents(__DIR__.'/../composer.json');
 
                 if ($composerFile) {
                     $githubRepo = json_decode($composerFile, true)['homepage'] ?? null;
@@ -31,7 +31,7 @@ class SettingsServiceProvider extends PackageServiceProvider
                 }
             });
 
-        $this->app->singleton(Settings::class, fn() => new Settings());
+        $this->app->singleton(Settings::class, fn () => new Settings);
         $this->app->alias(Settings::class, 's');
     }
 }

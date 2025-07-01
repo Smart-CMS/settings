@@ -17,14 +17,10 @@ class Setting extends Model
 
     public static function get(string $key = '*', mixed $default = null): mixed
     {
-        $settings = cache()->rememberForever('_settings', function () {
-            $settings = [];
+        $settings = [];
 
-            Setting::all()->each(function ($setting) use (&$settings) {
-                data_set($settings, $setting->key, $setting->value);
-            });
-
-            return $settings;
+        Setting::all()->each(function ($setting) use (&$settings) {
+            data_set($settings, $setting->key, $setting->value);
         });
 
         if ($key === '*') {
@@ -53,10 +49,12 @@ class Setting extends Model
 
     protected static function booted(): void
     {
-        static::saved(function () {
+        static::updated(function () {
+            app('s')->reload();
             app('s')->write();
         });
-        static::updated(function () {
+        static::created(function () {
+            app('s')->reload();
             app('s')->write();
         });
     }

@@ -54,4 +54,15 @@ class Settings
     {
         return data_get($this->settings, $key, $default);
     }
+
+    public function reload(): void
+    {
+        $settings = [];
+
+        Setting::all()->each(function ($setting) use (&$settings) {
+            data_set($settings, $setting->key, $setting->value);
+        });
+
+        $this->settings = $settings;
+    }
 }

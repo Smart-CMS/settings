@@ -52,7 +52,7 @@ class Settings
 
     public function get(string $key, mixed $default = null): mixed
     {
-        return data_get($this->settings, $key, $default);
+        return data_get($this->settings, $key, $default) ?? $default;
     }
 
     public function reload(): void

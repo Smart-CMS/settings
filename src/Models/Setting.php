@@ -4,6 +4,12 @@ namespace SmartCms\Settings\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $key
+ * @property mixed $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ */
 class Setting extends Model
 {
     protected $fillable = [
